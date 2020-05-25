@@ -83,19 +83,19 @@ pnpm-mode-keymap-prefix</kbd>.
 Once *pnpm-mode* has been activated, its commands are accessed by the
 <kbd>C-c n</kbd> command prefix:
 
-| command                       | keymap       | description                         |
-|-------------------------------|--------------|-------------------------------------|
-| pnpm-mode-npm-init             | <kbd>n</kbd> | Initialize new project              |
-| pnpm-mode-pnpm-install          | <kbd>i</kbd> | Install all project dependencies    |
-| pnpm-mode-pnpm-install-save     | <kbd>s</kbd> | Add new project dependency          |
-| pnpm-mode-pnpm-install-save-dev | <kbd>d</kbd> | Add new project dev dependency      |
-| pnpm-mode-pnpm-uninstall        | <kbd>u</kbd> | Remove project dependency           |
-| pnpm-mode-pnpm-list             | <kbd>l</kbd> | List installed project dependencies |
-| pnpm-mode-pnpm-run              | <kbd>r</kbd> | Run project script                  |
-| pnpm-mode-visit-project-file   | <kbd>v</kbd> | Visit project package.json file     |
-|                               | <kbd>?</kbd> | Display keymap commands             |
+| command                      | keymap       | description                         |
+|------------------------------|--------------|-------------------------------------|
+| pnpm-mode-npm-init           | <kbd>n</kbd> | Initialize new project              |
+| pnpm-mode-pnpm-install       | <kbd>i</kbd> | Install all project dependencies    |
+| pnpm-mode-pnpm-add           | <kbd>s</kbd> | Add new project dependency          |
+| pnpm-mode-pnpm-add-dev       | <kbd>d</kbd> | Add new project dev dependency      |
+| pnpm-mode-pnpm-remove        | <kbd>u</kbd> | Remove project dependency           |
+| pnpm-mode-pnpm-list          | <kbd>l</kbd> | List installed project dependencies |
+| pnpm-mode-pnpm-run           | <kbd>r</kbd> | Run project script                  |
+| pnpm-mode-visit-project-file | <kbd>v</kbd> | Visit project package.json file     |
+|                              | <kbd>?</kbd> | Display keymap commands             |
 
-### pnpm-mode-pnpm-init
+### pnpm-mode-npm-init
 
 Running <kbd>C-c n n</kbd> will create a new project in the current directory.
 
@@ -104,17 +104,17 @@ Running <kbd>C-c n n</kbd> will create a new project in the current directory.
 Running <kbd>C-c n i</kbd> in a project directory will install all project
 dependencies.
 
-### pnpm-mode-pnpm-install-save
+### pnpm-mode-pnpm-add
 
 Running <kbd>C-c n s</kbd> in a project directory will prompt for the name of a
 package to install and will install it as a project dependency.
 
-### pnpm-mode-pnpm-install-save-dev
+### pnpm-mode-pnpm-add-dev
 
 Running <kbd>C-c n d</kbd> in a project directory will prompt for the name of a
 to install and will install it as a project dev dependency.
 
-### pnpm-mode-pnpm-uninstall
+### pnpm-mode-pnpm-remove
 
 Running <kbd>C-c n u</kbd> in a project directory will prompt for the name of a
 package to uninstall and will uninstall it and remove it from project dependencies.
