@@ -135,6 +135,6 @@ in a buffer.
 
 ## Acknowledgements
 
-This repo is a rewrite of a fork of https://github.com/mojochao/pnpm-mode.  
+This repo is a rewrite of https://github.com/mojochao/npm-mode  
 Many thanks to Alen Gooch for his contribution.
 

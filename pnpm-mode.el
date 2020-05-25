@@ -29,24 +29,23 @@
 ;; a minor mode for convenient interactive use of API with a
 ;; mode-specific command keymap.
 ;;
-;; | command                       | keymap       | description                         |
-;; |-------------------------------|--------------|-------------------------------------|
-;; | pnpm-mode-pnpm-init             | <kbd>n</kbd> | Initialize new project              |
-;; | pnpm-mode-pnpm-install          | <kbd>i</kbd> | Install all project dependencies    |
-;; | pnpm-mode-pnpm-install-save     | <kbd>s</kbd> | Add new project dependency          |
-;; | pnpm-mode-pnpm-install-save-dev | <kbd>d</kbd> | Add new project dev dependency      |
-;; | pnpm-mode-pnpm-uninstall        | <kbd>u</kbd> | Remove project dependency           |
-;; | pnpm-mode-pnpm-list             | <kbd>l</kbd> | List installed project dependencies |
-;; | pnpm-mode-pnpm-run              | <kbd>r</kbd> | Run project script                  |
-;; | pnpm-mode-visit-project-file   | <kbd>v</kbd> | Visit project package.json file     |
-;; |                               | <kbd>?</kbd> | Display keymap commands             |
+;; | command                      | keymap       | description                         |
+;; |------------------------------+--------------+-------------------------------------|
+;; | pnpm-mode-npm-init           | <kbd>n</kbd> | Initialize new project              |
+;; | pnpm-mode-pnpm-install       | <kbd>i</kbd> | Install all project dependencies    |
+;; | pnpm-mode-pnpm-add           | <kbd>s</kbd> | Add new project dependency          |
+;; | pnpm-mode-pnpm-add-save-dev  | <kbd>d</kbd> | Add new project dev dependency      |
+;; | pnpm-mode-pnpm-remove        | <kbd>u</kbd> | Remove project dependency           |
+;; | pnpm-mode-pnpm-list          | <kbd>l</kbd> | List installed project dependencies |
+;; | pnpm-mode-pnpm-run           | <kbd>r</kbd> | Run project script                  |
+;; | pnpm-mode-visit-project-file | <kbd>v</kbd> | Visit project package.json file     |
+;; |                              | <kbd>?</kbd> | Display keymap commands             |
 
 ;;; Credit:
 
-;; This package began as a fork of the emacspnpm package, and its
-;; repository history has been preserved.  Many thanks to Alex
-;; for his contribution.
-;; https://github.com/AlexChesters/emacs-pnpm repo.
+;; This package began as an inspiration of the npm-mode package.
+;; Many thanks to Alen Gooch for his contribution.
+;; https://github.com/mojochao/npm-mode repo.
 
 ;;; Code:
 
@@ -110,7 +109,7 @@ nil."
     (compile cmd comint)))
 
 (defun pnpm-mode-pnpm-clean ()
-  "Run the 'pnpm list' command."
+  "Remove the node_modules folder."
   (interactive)
   (let ((dir (concat (file-name-directory (pnpm-mode--ensure-pnpm-module)) "node_modules")))
     (if (file-directory-p dir)
@@ -118,31 +117,31 @@ nil."
         (pnpm-mode--exec-process (format "rm -rf %s" dir)))
       (message (format "%s has already been cleaned" dir)))))
 
-(defun pnpm-mode-pnpm-init ()
+(defun pnpm-mode-npm-init ()
   "Run the pnpm init command."
   (interactive)
-  (pnpm-mode--exec-process "pnpm init"))
+  (pnpm-mode--exec-process "npm init"))
 
 (defun pnpm-mode-pnpm-install ()
   "Run the 'pnpm install' command."
   (interactive)
-  (pnpm-mode--exec-process "pnpm install"))
+  (pnpm-mode--exec-process "pnpm install" t))
 
-(defun pnpm-mode-pnpm-install-save (dep)
-  "Run the 'pnpm install --save' command for DEP."
+(defun pnpm-mode-pnpm-add (dep)
+  "Run the 'pnpm add' command for DEP."
   (interactive "sEnter package name: ")
-  (pnpm-mode--exec-process (format "pnpm install %s --save" dep)))
+  (pnpm-mode--exec-process (format "pnpm add %s " dep)))
 
-(defun pnpm-mode-pnpm-install-save-dev (dep)
-  "Run the 'pnpm install --save-dev' command for DEP."
+(defun pnpm-mode-pnpm-add-dev (dep)
+  "Run the 'pnpm add -D' command for DEP."
   (interactive "sEnter package name: ")
-  (pnpm-mode--exec-process (format "pnpm install %s --save-dev" dep)))
+  (pnpm-mode--exec-process (format "pnpm add %s -D" dep)))
 
-(defun pnpm-mode-pnpm-uninstall ()
-  "Run the 'pnpm uninstall' command."
+(defun pnpm-mode-pnpm-remove ()
+  "Run the 'pnpm remove' command."
   (interactive)
-  (let ((dep (completing-read "Uninstall dependency: " (pnpm-mode--get-project-dependencies))))
-    (pnpm-mode--exec-process (format "pnpm uninstall %s" dep))))
+  (let ((dep (completing-read "Remove dependency: " (pnpm-mode--get-project-dependencies))))
+    (pnpm-mode--exec-process (format "pnpm remove %s" dep))))
 
 (defun pnpm-mode-pnpm-list ()
   "Run the 'pnpm list' command."
@@ -176,9 +175,9 @@ nil."
   (let ((map (make-sparse-keymap)))
     (define-key map "n" 'pnpm-mode-pnpm-init)
     (define-key map "i" 'pnpm-mode-pnpm-install)
-    (define-key map "s" 'pnpm-mode-pnpm-install-save)
-    (define-key map "d" 'pnpm-mode-pnpm-install-save-dev)
-    (define-key map "u" 'pnpm-mode-pnpm-uninstall)
+    (define-key map "s" 'pnpm-mode-pnpm-add)
+    (define-key map "d" 'pnpm-mode-pnpm-add-dev)
+    (define-key map "u" 'pnpm-mode-pnpm-remove)
     (define-key map "l" 'pnpm-mode-pnpm-list)
     (define-key map "r" 'pnpm-mode-pnpm-run)
     (define-key map "v" 'pnpm-mode-visit-project-file)
