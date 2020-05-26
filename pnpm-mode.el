@@ -1,4 +1,4 @@
-;;; pnpm-mode.el --- minor mode for working with pnpm projects
+;;; pnpm-mode.el --- Minor mode for working with pnpm projects
 
 ;; Version: 1.0.0
 ;; Author: Rajasegar Chandran <rajasegar.c@gmail.com>
@@ -86,8 +86,7 @@ nil."
            (maphash (lambda (key value)
                       (setq commands
                             (append commands
-                                    (list (list key (format "%s %s" "pnpm" key))))
-                            ))
+                                    (list (list key (format "%s %s" "pnpm" key))))))
                     value)
            commands)
           (t value))))
@@ -169,10 +168,9 @@ Optional argument COMINT ."
 (defun pnpm-mode-pnpm-update ()
   "Run the 'pnpm update' command."
   (interactive)
-  (pnpm-mode--exec-process "pnpm update")
-  )
+  (pnpm-mode--exec-process "pnpm update"))
 
-(defgroup pnpm-mode nil
+(defgroup pnpm nil
   "Customization group for pnpm-mode."
   :group 'convenience)
 
