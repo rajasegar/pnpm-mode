@@ -119,6 +119,11 @@ to install and will install it as a project dev dependency.
 Running <kbd>C-c n u</kbd> in a project directory will prompt for the name of a
 package to uninstall and will uninstall it and remove it from project dependencies.
 
+### pnpm-mode-pnpm-update
+
+Running <kbd>C-c n U</kbd> in a project directory will updates packages to their 
+latest version based on the specified range.
+
 ### pnpm-mode-pnpm-list
 
 Running <kbd>C-c n l</kbd> in a project directory will list the project.

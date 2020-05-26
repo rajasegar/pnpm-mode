@@ -36,6 +36,7 @@
 ;; | pnpm-mode-pnpm-add           | <kbd>s</kbd> | Add new project dependency          |
 ;; | pnpm-mode-pnpm-add-save-dev  | <kbd>d</kbd> | Add new project dev dependency      |
 ;; | pnpm-mode-pnpm-remove        | <kbd>u</kbd> | Remove project dependency           |
+;; | pnpm-mode-pnpm-update        | <kbd>U</kbd> | Update project dependency           |
 ;; | pnpm-mode-pnpm-list          | <kbd>l</kbd> | List installed project dependencies |
 ;; | pnpm-mode-pnpm-run           | <kbd>r</kbd> | Run project script                  |
 ;; | pnpm-mode-visit-project-file | <kbd>v</kbd> | Visit project package.json file     |
@@ -58,7 +59,7 @@
   "Name of pnpm mode modeline name.")
 
 (defun pnpm-mode--ensure-pnpm-module ()
-  "Asserts that you're currently inside an pnpm module"
+  "Asserts that you're currently inside an pnpm module."
   (pnpm-mode--project-file))
 
 (defun pnpm-mode--project-file ()
@@ -100,7 +101,8 @@ nil."
   (pnpm-mode--get-project-property "dependencies"))
 
 (defun pnpm-mode--exec-process (cmd &optional comint)
-  "Execute a process running CMD."
+  "Execute a process running CMD.
+Optional argument COMINT ."
   (let ((compilation-buffer-name-function
          (lambda (mode)
            (format "*pnpm:%s - %s*"
@@ -152,7 +154,8 @@ nil."
   (completing-read "Run script: " (pnpm-mode--get-project-scripts)))
 
 (defun pnpm-mode-pnpm-run (script &optional comint)
-  "Run the 'pnpm run' command on a project script."
+  "Run the 'pnpm run' command on a project SCRIPT.
+Optional argument COMINT ."
   (interactive
    (list (pnpm-run--read-command)
          (consp current-prefix-arg)))
@@ -163,12 +166,18 @@ nil."
   (interactive)
   (find-file (pnpm-mode--project-file)))
 
+(defun pnpm-mode-pnpm-update ()
+  "Run the 'pnpm update' command."
+  (interactive)
+  (pnpm-mode--exec-process "pnpm update")
+  )
+
 (defgroup pnpm-mode nil
   "Customization group for pnpm-mode."
   :group 'convenience)
 
 (defcustom pnpm-mode-command-prefix "C-c n"
-  "Prefix for pnpm-mode."
+  "Prefix for variable `pnpm-mode'."
   :group 'pnpm-mode)
 
 (defvar pnpm-mode-command-keymap
@@ -178,17 +187,18 @@ nil."
     (define-key map "s" 'pnpm-mode-pnpm-add)
     (define-key map "d" 'pnpm-mode-pnpm-add-dev)
     (define-key map "u" 'pnpm-mode-pnpm-remove)
+    (define-key map "U" 'pnpm-mode-pnpm-remove)
     (define-key map "l" 'pnpm-mode-pnpm-list)
     (define-key map "r" 'pnpm-mode-pnpm-run)
     (define-key map "v" 'pnpm-mode-visit-project-file)
     map)
-  "Keymap for pnpm-mode commands.")
+  "Keymap for variable `pnpm-mode' commands.")
 
 (defvar pnpm-mode-keymap
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd pnpm-mode-command-prefix) pnpm-mode-command-keymap)
     map)
-  "Keymap for `pnpm-mode'.")
+  "Keymap for variable `pnpm-mode'.")
 
 ;;;###autoload
 (define-minor-mode pnpm-mode
