@@ -121,7 +121,7 @@ Optional argument COMINT ."
 (defun pnpm-mode-npm-init ()
   "Run the pnpm init command."
   (interactive)
-  (pnpm-mode--exec-process "npm init"))
+  (pnpm-mode--exec-process "npm init" t))
 
 (defun pnpm-mode-pnpm-install ()
   "Run the 'pnpm install' command."
