@@ -176,7 +176,8 @@ Optional argument COMINT ."
 
 (defcustom pnpm-mode-command-prefix "C-c n"
   "Prefix for variable `pnpm-mode'."
-  :group 'pnpm-mode)
+  :group 'pnpm-mode
+  :type 'string)
 
 (defvar pnpm-mode-command-keymap
   (let ((map (make-sparse-keymap)))
