@@ -124,6 +124,10 @@ package to uninstall and will uninstall it and remove it from project dependenci
 Running <kbd>C-c n U</kbd> in a project directory will updates packages to their 
 latest version based on the specified range.
 
+### pnpm-mode-pnpm-test
+
+Running <kbd>C-c n t</kbd> in a project directory will run the test script.
+
 ### pnpm-mode-pnpm-list
 
 Running <kbd>C-c n l</kbd> in a project directory will list the project.

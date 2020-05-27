@@ -39,6 +39,7 @@
 ;; | pnpm-mode-pnpm-update        | <kbd>U</kbd> | Update project dependency           |
 ;; | pnpm-mode-pnpm-list          | <kbd>l</kbd> | List installed project dependencies |
 ;; | pnpm-mode-pnpm-run           | <kbd>r</kbd> | Run project script                  |
+;; | pnpm-mode-pnpm-test          | <kbd>t</kbd> | Run project test script             |
 ;; | pnpm-mode-visit-project-file | <kbd>v</kbd> | Visit project package.json file     |
 ;; |                              | <kbd>?</kbd> | Display keymap commands             |
 
@@ -170,6 +171,11 @@ Optional argument COMINT ."
   (interactive)
   (pnpm-mode--exec-process "pnpm update"))
 
+(defun pnpm-mode-pnpm-test ()
+  "Run the 'pnpm test' command."
+  (interactive)
+  (pnpm-mode--exec-process "pnpm test"))
+
 (defgroup pnpm nil
   "Customization group for pnpm-mode."
   :group 'convenience)
@@ -190,6 +196,7 @@ Optional argument COMINT ."
     (define-key map "l" 'pnpm-mode-pnpm-list)
     (define-key map "r" 'pnpm-mode-pnpm-run)
     (define-key map "v" 'pnpm-mode-visit-project-file)
+    (define-key map "t" 'pnpm-mode-pnpm-test)
     map)
   "Keymap for variable `pnpm-mode' commands.")
 
