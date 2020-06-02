@@ -94,6 +94,7 @@ Once *pnpm-mode* has been activated, its commands are accessed by the
 | pnpm-mode-pnpm-remove        | <kbd>u</kbd> | Remove project dependency           |
 | pnpm-mode-pnpm-list          | <kbd>l</kbd> | List installed project dependencies |
 | pnpm-mode-pnpm-run           | <kbd>r</kbd> | Run project script                  |
+| pnpm-mode-pnpm-test          | <kbd>t</kbd> | Run project test script             |
 | pnpm-mode-visit-project-file | <kbd>v</kbd> | Visit project package.json file     |
 |                              | <kbd>?</kbd> | Display keymap commands             |
 
