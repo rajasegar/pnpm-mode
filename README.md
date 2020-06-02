@@ -1,5 +1,7 @@
 # pnpm-mode
 
+[![MELPA](https://melpa.org/packages/pnpm-mode-badge.svg)](https://melpa.org/#/pnpm-mode)
+
 This is *pnpm-mode*, an [Emacs](https://www.gnu.org/software/emacs/) minor mode for working with [NPM](https://npmjs.com) projects, using [pnpm](https://pnpm.js.org).
 
 ## Installation
